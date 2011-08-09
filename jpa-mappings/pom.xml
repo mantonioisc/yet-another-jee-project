@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>jpa-ejb3-jsf-project</artifactId>
+		<groupId>examples</groupId>
+		<version>1.0</version>
+	</parent>
+
+	<groupId>examples</groupId>
+	<artifactId>jpa-mappings</artifactId>
+	<version>1.0</version>
+	<name>jpa-mappings</name>
+
+	<dependencies>
+		<!--JPA implementation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.6.6.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.6.6.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<!-- JPA annotations -->
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.1.Final</version>
+		</dependency>
+
+		<!-- Database -->
+		<!--
+			Downloaded from oracle site (10.2.0.4)
+			mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 -Dpackaging=jar -Dfile=ojdbc14.jar -Djavadoc=javadoc.zip
+		-->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.4.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+
+		<resources>
+			<resource>
+				<!-- persistence.xml should be inside jar file in META-INF otherwise container will not find it -->
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>persistence.xml</include>
+				</includes>
+				<targetPath>META-INF</targetPath>
+			</resource>
+		</resources>
+
+		<testResources>
+			<!-- Key configuration to run unit tests, so EntityManagerFactory finds the persistence.xml -->
+			<testResource>
+				<directory>src/test/resources</directory>
+				<includes>
+					<include>persistence.xml</include>
+				</includes>
+				<targetPath>META-INF</targetPath>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+	</build>
+</project>
