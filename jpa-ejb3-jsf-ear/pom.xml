@@ -17,22 +17,8 @@
 
 	<dependencies>
 		<!--
-		<dependency>
-			<groupId>examples</groupId>
-			<artifactId>jpa-mappings</artifactId>
-			<version>1.0</version>
-			<type>jar</type>
-			<exclusions>
-				<exclusion>
-					<groupId>org.hibernate</groupId>
-					<artifactId>hibernate-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.hibernate</groupId>
-					<artifactId>hibernate-entitymanager</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>-->
+			jpa-mappings persistence unit is pulled by ejb3-daos
+		-->
 		<dependency>
 			<groupId>examples</groupId>
 			<artifactId>ejb3-daos</artifactId>
@@ -73,6 +59,7 @@
 				</configuration>
 			</plugin>
 
+			<!-- JBoss 6 AS plugin -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jboss-maven-plugin</artifactId>
@@ -86,6 +73,12 @@
 				</configuration>
 			</plugin>
 
+			<!-- JBoss 7 AS plugin -->
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>7.0.0.Final</version>
+			</plugin>
 		</plugins>
 	</build>
 

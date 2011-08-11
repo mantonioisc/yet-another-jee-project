@@ -14,12 +14,18 @@ Create DB tables as shown in DDL & DML sql files from oracle-hibernate-mappings 
 And deploy the jpa-ejb3-jsf-ear-1.0.ear in jpa-ejb3-jsf-project/jpa-ejb3-jsf-ear/target
 For JBoss just copy it to server/default/deploy
 
-- JBoss Maven plugin configuration
+- JBoss 6 Maven plugin configuration
 http://mojo.codehaus.org/jboss-maven-plugin/plugin-info.html
 It's configured in jpa-ejb3-jsf-ear project, to run it type
 			mvn jboss:deploy
 	and
 			mvn jboss:undeploy
+
+- JBoss 7 Maven Plugin configuration
+Check plugin configuration at http://download.jboss.org/jbossas/7.0/jboss-as-7.0.0.Final/jboss-as-quickstarts-7.0.0.Final-dist.zip
+It's configured in jpa-ejb3-jsf-ear project, it requires less configuration than previous version, to run it type
+			mvn jboss-as:deploy
+			mvn jboss-as:undeploy
 
 - To check it
 http://localhost:8080/jsf-webapp
@@ -52,11 +58,19 @@ persistence.xml inside the resulting jar in /META-INF/.
 reference to the data source to be used. This has to be configured in application server.
 	When deploying to jboss be careful not tu include the hibernate implementation used to test to avoid errors.
 
--For DataSource
+- For DataSource JBoss 6
 	Copy the oracle ojdbc.jar in server/default/lib to be available to JBoss AS.
 	Create a data source in the application server that has the same name as src/main/resources/persistence.xml
 in this case java:/OracleDS check the file for the definition used in JBoss 6: OracleDS-ds.xml . This definition must be
 saved in server/default/deploy
+
+- For DataSource JBoss 7
+	Download oracle driver: ojdbc5.jar or ojdbc6.jar it contains necessary deployment descriptors to install in
+application server. Copy it on jboss-as-7.0.0.Final/standalone/deployments/ or in admin console Deployments->Manage
+deployments->Add content, and select the jar file.
+	Next go to Profile->Connector->Datasources->New datasource give the OracleDS name and java:/OracleDS as JNDI name,
+then select the recently installed ojdbc driver, then give the connection data.
+
 
 -For EJB jar
 	For EJBs we need a jar with the javax.ejb annotations we can do this in two different ways(also applicable for
@@ -97,11 +111,14 @@ and not pulled from any war files WEB-INF/lib.
 	Other important consideration is to avoid placing other hibernate definitions inside lib/ directory, because
 version errors occurs when deploying in JBoss.
 
+- Imported to subversion
+			svn import jpa-ejb3-jsf-project svn://localhost/jpa-ejb3-jsf-project
+
 ##############################TODO#############################
 +Clean up sample fils
-Test it in jboss 7
++Test it in jboss 7
 Extract dao class a parameter and use generics
-Import it into subversion
++Import it into subversion
 Try to run it from glassfish using the plugin
 Map the rest of the entities and make a quick unit test for them
 Create DAO EJB's

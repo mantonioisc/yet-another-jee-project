@@ -27,22 +27,6 @@
 	</properties>
 
 	<dependencies>
-		<!-- JEE -->
-		<dependency>
-			<!-- Just pull EJB3 for now -->
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<version>1.0.1.Final</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.spec.javax.servlet</groupId>
-			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
-			<version>1.0.0.Final</version>
-			<scope>provided</scope>
-		</dependency>
-		
 		<!--
 		Pulls everything of JEE spec from JBoss, can be very useful in all projects
 		<dependency>
@@ -94,11 +78,9 @@
 					<artifactId>maven-embedded-glassfish-plugin</artifactId>
 					<version>3.1.1</version>
 				</plugin>
-
 			</plugins>
 		</pluginManagement>
 	</build>
-
 
 	<dependencyManagement>
 		<dependencies>
@@ -112,22 +94,92 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<repositories>
-		<!--
-		<repository>
-			<id>http://download.java.net/maven/glassfish</id>
-			<url>http://download.java.net/maven/glassfish</url>
-		</repository>-->
-		<repository>
-			<id>https://repository.jboss.org/nexus/content/repositories/releases</id>
-			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
-		</repository>
-	</repositories>
+	<profiles>
+		<profile>
+			<id>jboss</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<!-- JEE -->
+				<dependency>
+					<!-- Just pull EJB3 for now -->
+					<groupId>org.jboss.spec.javax.ejb</groupId>
+					<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+					<version>1.0.1.Final</version>
+					<scope>provided</scope>
+				</dependency>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>http://download.java.net/maven/glassfish</id>
-			<url>http://download.java.net/maven/glassfish</url>
-		</pluginRepository>
-	</pluginRepositories>
+				<dependency>
+					<groupId>org.jboss.spec.javax.servlet</groupId>
+					<artifactId>jboss-servlet-api_3.0_spec</artifactId>
+					<version>1.0.0.Final</version>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+
+			<repositories>
+				<repository>
+					<id>jboss-public-repository</id>
+					<name>JBoss Repository</name>
+					<url>https://repository.jboss.org/nexus/content/groups/public</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+
+			<pluginRepositories>
+				<pluginRepository>
+					<id>http://download.java.net/maven/glassfish</id>
+					<url>http://download.java.net/maven/glassfish</url>
+				</pluginRepository>
+				<pluginRepository>
+					<id>jboss-public-repository</id>
+					<name>JBoss Repository</name>
+					<url>https://repository.jboss.org/nexus/content/groups/public</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+
+		<profile>
+			<id>glassfish</id>
+			<dependencies>
+				<!-- JEE -->
+				<!--
+				<dependency>
+					<groupId>javax</groupId>
+					<artifactId>javaee-api</artifactId>
+					<version>6.0</version>
+					<scope>provided</scope>
+				</dependency>-->
+				<dependency>
+					<groupId>org.glassfish.extras</groupId>
+					<artifactId>glassfish-embedded-all</artifactId>
+					<version>3.1.1</version>
+				</dependency>
+			</dependencies>
+			<repositories>
+				<repository>
+					<id>http://download.java.net/maven/glassfish</id>
+					<url>http://download.java.net/maven/glassfish</url>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>http://download.java.net/maven/glassfish</id>
+					<url>http://download.java.net/maven/glassfish</url>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
 </project>
