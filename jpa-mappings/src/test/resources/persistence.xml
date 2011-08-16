@@ -7,6 +7,8 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>examples.domain.Tag</class>
 		<class>examples.domain.User</class>
+		<class>examples.domain.Company</class>
+		<class>examples.domain.Developer</class>
 
 		<properties>
 			<!-- Connection properties -->

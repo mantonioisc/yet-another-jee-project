@@ -71,6 +71,11 @@ deployments->Add content, and select the jar file.
 	Next go to Profile->Connector->Datasources->New datasource give the OracleDS name and java:/OracleDS as JNDI name,
 then select the recently installed ojdbc driver, then give the connection data.
 
+- For DataSource Glassfish 3.1.1
+	Copy ojdbc5.jar or ojdbc6.jar to glassfish3/glassfish/domains/domain1/lib/ and start glassfish
+Enter asadmin session and type:
+			create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname oracle.jdbc.pool.OracleDataSource --property "user=HR:password=HR:url=jdbc\\:oracle\\:thin\\:@localhost\\:1521\\:xe" OracleDS
+Described here http://download.oracle.com/docs/cd/E18930_01/html/821-2432/gkyan.html
 
 -For EJB jar
 	For EJBs we need a jar with the javax.ejb annotations we can do this in two different ways(also applicable for
