@@ -9,6 +9,8 @@
 		<class>examples.domain.User</class>
 		<class>examples.domain.Company</class>
 		<class>examples.domain.Developer</class>
+		<class>examples.domain.Game</class>
+		<class>examples.domain.Console</class>
 
 		<properties>
 			<!-- Connection properties -->
