@@ -1,5 +1,16 @@
 #######################PROJECT DESCRIPTION###########################
+#Imported to git on Feb/18/2014
+git svn clone --authors-file users.txt --no-metadata svn://blake/jpa-ejb3-jsf-project yet-another-jee-project
 
+*Yet another JEE 6 project, not as complete as I would like but it's kind of late, JEE 7 is here! And it has a lot of
+improvements compared to version 6. Specially I like the fact that JEE 7 integrates well with maven (talking about
+dependencies), JEE 6 was a dependency nightmare at both xml configuration level and container runtime level.
+I might take some ideas from here and use them in future JEE 7 projects.
+
+*This project requires the same database structure as this project: oracle-hibernate-mappings
+You must use the same DDL scripts to create the data base tables and populate them with data.
+Same DB different ORM implementation!
+https://github.com/mantonioisc/restful-services/tree/master/oracle-hibernate-mappings/src/main/sql
 
 ######################INTRUCTIONS###############################
 - Compile
@@ -37,9 +48,9 @@ This project works on JBoss AS 6
 Many configurations had to be done in order for this to work. Here are resumed, please consider them in other JPA,EJB, JSF projects.
 It war more difficult than expected thanks to the lack of knowledge to pass from EJB development to deployment.
 
--Installing Oracle ojdbc14 for oracle xe
-	Downloaded from oracle site (10.2.0.4) http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-10201-088211.html
-mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 -Dpackaging=jar -Dfile=ojdbc14.jar -Djavadoc=javadoc.zip
+-Installing Oracle ojdbc6 for oracle xe
+	Download Oracle Database 11g Release 2 (11.2.0.4) JDBC Drivers http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html
+mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.4 -Dpackaging=jar -Dfile=ojdbc6.jar
 
 -For JPA projects
 	We need an JPA annotations implementations jar, and JPA Implementation, here provided by hibernate
