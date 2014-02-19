@@ -44,13 +44,13 @@
 
 		<!-- Database -->
 		<!--
-			Downloaded from oracle site (10.2.0.4)
-			mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 -Dpackaging=jar -Dfile=ojdbc14.jar -Djavadoc=javadoc.zip
+			Downloaded from oracle site (11.2.0.4)
+			mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.4 -Dpackaging=jar -Dfile=ojdbc6.jar -Djavadoc=javadoc.zip
 		-->
 		<dependency>
 			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>10.2.0.4.0</version>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.4</version>
 		</dependency>
 	</dependencies>
 
